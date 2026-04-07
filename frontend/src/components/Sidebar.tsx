@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
   LayoutDashboard,
   Dna,
@@ -8,9 +8,11 @@ import {
   Radio,
   ListOrdered,
   FlaskConical,
+  Lock,
   type LucideIcon,
 } from 'lucide-react'
 import { LogoMark, LogoWordmark } from './Logo'
+import { useAuth } from '../context/AuthContext'
 
 interface NavItem {
   path: string
@@ -35,6 +37,7 @@ const tools: NavItem[] = [
 export default function Sidebar() {
   const location = useLocation()
   const navigate = useNavigate()
+  const { user } = useAuth()
 
   return (
     <motion.aside
@@ -43,7 +46,6 @@ export default function Sidebar() {
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
-      {/* Logo */}
       <div className="sidebar-logo" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
         <div className="sidebar-logo-row">
           <LogoMark size={34} color="rgba(255,255,255,0.88)" />
@@ -52,17 +54,52 @@ export default function Sidebar() {
         <div className="sidebar-logo-sub">Allosteric Discovery Platform</div>
       </div>
 
-      {/* Nav */}
       <nav className="sidebar-nav">
         <div className="nav-section-label">Platform</div>
         {navItems.map((item) => (
           <NavLink key={item.path} item={item} active={location.pathname === item.path} onClick={() => navigate(item.path)} />
         ))}
 
-        <div className="nav-section-label">Sub-Tools</div>
-        {tools.map((item) => (
-          <NavLink key={item.path} item={item} active={location.pathname === item.path} onClick={() => navigate(item.path)} />
-        ))}
+        <AnimatePresence>
+          {user ? (
+            <motion.div
+              key="tools"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 4 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="nav-section-label">Sub-Tools</div>
+              {tools.map((item) => (
+                <NavLink key={item.path} item={item} active={location.pathname === item.path} onClick={() => navigate(item.path)} />
+              ))}
+            </motion.div>
+          ) : (
+            <motion.div
+              key="locked"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              style={{
+                margin: '16px 12px 8px',
+                padding: '14px',
+                borderRadius: 12,
+                background: 'rgba(255,255,255,0.07)',
+                border: '1px solid rgba(255,255,255,0.1)',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                <Lock size={12} color="rgba(255,255,255,0.5)" />
+                <span style={{ fontSize: 10, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)' }}>
+                  Sub-Tools
+                </span>
+              </div>
+              <p style={{ fontSize: 11.5, color: 'rgba(255,255,255,0.4)', lineHeight: 1.55, margin: 0 }}>
+                Sign in to access Scout, Reveal, Dock, Signal, Rank, and Validate.
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       <div className="sidebar-footer">

@@ -27,6 +27,14 @@ body {
   overflow: hidden;
 }
 
+.main {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: var(--surface);
+  position: relative;
+}
+
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--blush); }
 ::-webkit-scrollbar-thumb { background: var(--salmon); border-radius: 4px; }
@@ -207,8 +215,8 @@ body {
 
 /* ── Page shell ── */
 .page {
-  min-height: 100vh;
-  padding: 48px 52px;
+  min-height: 100%;
+  padding: 32px 36px;
 }
 
 .page-eyebrow {
