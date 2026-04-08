@@ -1,0 +1,25 @@
+# Allos Reveal — default configuration
+# All values can be overridden per-protein.
+
+# ── Frame filtering ───────────────────────────────────────────────────────────
+rmsf_rigid_threshold: 0.5   # Å — frames with max RMSF below this are skipped
+
+# ── GNN inference ─────────────────────────────────────────────────────────────
+gpu_batch_size: 256         # frames per GPU forward pass
+device: "cuda"              # "cuda" or "cpu"
+
+# ── Pocket extraction ─────────────────────────────────────────────────────────
+hotspot_score_threshold: 0.5    # GNN score threshold for "hot" residues
+hotspot_min_cluster_size: 5     # minimum connected hot residues to form a pocket
+min_pocket_volume: 150.0        # Å³ — pockets smaller than this are discarded
+
+# ── Temporal clustering ───────────────────────────────────────────────────────
+dbscan_epsilon: 4.0             # Å — DBSCAN neighbourhood radius
+dbscan_min_samples: 3           # minimum events to form a named pocket identity
+
+# ── Druggability scoring ──────────────────────────────────────────────────────
+dscore_threshold: 0.0           # minimum Dscore to include in the atlas
+
+# ── Output ────────────────────────────────────────────────────────────────────
+top_n_pymol: 10                 # number of top pockets in the PyMOL session
+write_pymol: true

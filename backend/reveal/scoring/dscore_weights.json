@@ -1,0 +1,13 @@
+{
+  "_comment": "Logistic Dscore weights trained on ChEMBL allosteric binder data vs non-binder controls.",
+  "_formula": "logistic(w0 + w_volume*f_volume + w_hydrophobic*hydrophobicity_norm + w_enclosure*enclosure + w_probe*probe_overlap + w_gnn*cryptic_prob)",
+  "w0": -2.1,
+  "w_volume": 1.8,
+  "w_hydrophobic": 1.4,
+  "w_enclosure": 1.6,
+  "w_probe": 2.0,
+  "w_gnn": 2.5,
+  "volume_optimal_min": 300.0,
+  "volume_optimal_max": 1000.0,
+  "version": "1.0"
+}

@@ -1,0 +1,20 @@
+# Allos Reveal — fast test configuration for CI
+# Uses mini_trajectory.h5 (500 frames, T4 lysozyme).
+# No GPU required — all stages run on CPU with minimal memory.
+
+rmsf_rigid_threshold: 0.3    # lower to keep more frames in the small test set
+
+gpu_batch_size: 32
+device: "cpu"
+
+hotspot_score_threshold: 0.4  # lower threshold since random weights are used in CI
+hotspot_min_cluster_size: 3
+min_pocket_volume: 50.0        # smaller to find pockets with the toy trajectory
+
+dbscan_epsilon: 6.0
+dbscan_min_samples: 2
+
+dscore_threshold: 0.0
+
+top_n_pymol: 3
+write_pymol: false             # skip PyMOL session in CI
