@@ -10,15 +10,15 @@ const POSTS = [
     date: 'March 28, 2026',
     tag: 'Science',
     title: 'What is cryptic allostery and why does it matter for drug discovery?',
-    summary: 'Most proteins have hidden pockets that only appear transiently during conformational dynamics. These cryptic allosteric sites bypass resistance mutations and allow fine-tuned modulation — but finding them has required weeks of expert compute, until now.',
+    summary: 'Most proteins have hidden pockets that only appear transiently during conformational dynamics. These cryptic allosteric sites bypass resistance mutations and allow fine-tuned modulation but finding them has required weeks of expert compute, until now.',
     readTime: '7 min read',
-    body: `Allosteric regulation is one of the most elegant mechanisms in biology. When a small molecule binds at a site distant from the active site, it can reshape the entire protein — altering catalytic activity, protein-protein interactions, or downstream signaling. Traditional allosteric modulators target sites that are structurally visible in a crystal structure. But the most interesting sites are the ones that don't show up until the protein is moving.
+    body: `Allosteric regulation is one of the most elegant mechanisms in biology. When a small molecule binds at a site distant from the active site, it can reshape the entire protein altering catalytic activity, protein-protein interactions, or downstream signaling. Traditional allosteric modulators target sites that are structurally visible in a crystal structure. But the most interesting sites are the ones that don't show up until the protein is moving.
 
 Cryptic allosteric sites are pockets that exist only transiently, formed by the natural conformational dynamics of the protein. They open for milliseconds to microseconds, expose a druggable cavity, and then close again. In a static crystal structure, they are invisible. This is precisely what makes them so valuable: resistance mutations cluster at the orthosteric site (the active site), but the cryptic allosteric site is often structurally remote, evolutionarily conserved, and completely unaffected by resistance mutations.
 
-The challenge has always been finding them. Conventional MD simulations run at 1–10 ns/day — nowhere near the timescales at which cryptic pockets form. Enhanced sampling methods like metadynamics can accelerate this, but require expert tuning, weeks of cluster compute, and still produce trajectories that require manual inspection frame by frame.
+The challenge has always been finding them. Conventional MD simulations run at 1–10 ns/day nowhere near the timescales at which cryptic pockets form. Enhanced sampling methods like metadynamics can accelerate this, but require expert tuning, weeks of cluster compute, and still produce trajectories that require manual inspection frame by frame.
 
-AlloSphere changes this by combining GPU-accelerated enhanced sampling (Scout) with an equivariant neural network that watches every frame simultaneously (Reveal). The pipeline runs end to end on a single workstation in hours, not weeks — and the AI steers the simulation toward unexplored conformational space in real time, so compute is never wasted.
+AlloSphere changes this by combining GPU-accelerated enhanced sampling (Scout) with an equivariant neural network that watches every frame simultaneously (Reveal). The pipeline runs end to end on a single workstation in hours, not weeks and the AI steers the simulation toward unexplored conformational space in real time, so compute is never wasted.
 
 The downstream impact is significant. If a cryptic allosteric site can be found and a ligand can be shown to transmit a meaningful signal (what Signal predicts), you have a chemical probe that is mechanistically distinct from anything in a resistance-prone active site. For oncology programs stalled by kinase inhibitor resistance, or GPCR programs where full agonism is not desirable, this represents a fundamentally new class of starting points.`,
   },
@@ -29,15 +29,15 @@ The downstream impact is significant. If a cryptic allosteric site can be found 
     title: 'Why we built Reveal on an E(3)-equivariant GNN instead of a CNN',
     summary: 'Protein surface geometry is inherently three-dimensional and orientation-independent. Standard convolutional architectures break when you rotate the input. Here is why equivariance is non-negotiable for reliable pocket detection.',
     readTime: '9 min read',
-    body: `When we started building Reveal, the obvious baseline was a 3D CNN operating on volumetric representations of the protein surface — voxelized electron density or surface potential maps. CNNs are fast, well-understood, and there are strong precedents in structure-based drug discovery. But they have a fundamental problem: they are not equivariant to rotation.
+    body: `When we started building Reveal, the obvious baseline was a 3D CNN operating on volumetric representations of the protein surface voxelized electron density or surface potential maps. CNNs are fast, well-understood, and there are strong precedents in structure-based drug discovery. But they have a fundamental problem: they are not equivariant to rotation.
 
-If you rotate a protein by 30 degrees before voxelizing it, a CNN will produce a completely different output. This means the model has to learn the same pocket-detection capability for every possible orientation of every possible pocket geometry — an enormous waste of model capacity, and a source of variance that degrades generalization to new proteins.
+If you rotate a protein by 30 degrees before voxelizing it, a CNN will produce a completely different output. This means the model has to learn the same pocket-detection capability for every possible orientation of every possible pocket geometry an enormous waste of model capacity, and a source of variance that degrades generalization to new proteins.
 
 E(3)-equivariant architectures solve this by construction. An E(3)-equivariant network processes geometric features (positions, distances, angles) in a way that transforms predictably under rotations, reflections, and translations. When you rotate the input, the output rotates in a corresponding way. This means the model only needs to learn each geometric motif once, regardless of its orientation in space.
 
 For pocket detection specifically, this matters because the defining features of a druggable pocket are geometric: a minimum volume, a hydrophobic core, a polar rim, specific curvature. These features are orientation-independent by definition. An equivariant model can recognize them regardless of how the protein was crystallized or how the trajectory frame was generated.
 
-The practical results are significant. Our EG-GNN achieves 94% recall on held-out proteins with a false positive rate of 8%, without any trajectory alignment preprocessing. A comparable 3D CNN required alignment and achieved 81% recall at the same false positive rate. The equivariant model is also substantially more parameter-efficient — we achieve these results with 12M parameters versus 48M for the CNN baseline.`,
+The practical results are significant. Our EG-GNN achieves 94% recall on held-out proteins with a false positive rate of 8%, without any trajectory alignment preprocessing. A comparable 3D CNN required alignment and achieved 81% recall at the same false positive rate. The equivariant model is also substantially more parameter-efficient we achieve these results with 12M parameters versus 48M for the CNN baseline.`,
   },
   {
     id: 'atlas-signal-training',
@@ -50,7 +50,7 @@ The practical results are significant. Our EG-GNN achieves 94% recall on held-ou
 
 The problem is that this requires dozens of independent MD runs per compound, each on the order of 100 ns to 1 μs. For a hit list of even 100 compounds, this is months of cluster compute. It is simply not compatible with a drug discovery timeline.
 
-The insight behind Signal is that the allosteric communication pathways in a protein are largely encoded in the protein's dynamic contact network — the pattern of correlated motions between residues. If you can model this network as a graph and train a transformer to predict how perturbations at one node propagate to another, you can replace the MD calculation with a forward pass.
+The insight behind Signal is that the allosteric communication pathways in a protein are largely encoded in the protein's dynamic contact network the pattern of correlated motions between residues. If you can model this network as a graph and train a transformer to predict how perturbations at one node propagate to another, you can replace the MD calculation with a forward pass.
 
 ATLAS gave us the training signal. Each entry in ATLAS includes the modulator structure, the binding site, the target protein, and the experimentally measured functional effect (agonist, antagonist, or neutral). Crucially, for a subset of entries, perturbation MD data is available, providing residue-level pathway information. We trained Signal on this subset first, then fine-tuned on the full dataset using experimental labels.
 
@@ -69,7 +69,7 @@ The baseline is OpenMM 8.1 running on CUDA 12.2. OpenMM's GPU backend has been c
 
 REST2 contributes the remaining throughput by using GPU memory that would otherwise be idle. REST2 (Replica Exchange with Solute Tempering 2) runs multiple temperature replicas, periodically exchanging configurations to help the simulation escape kinetic traps. In our implementation, we run 4–8 replicas depending on available VRAM, with all replicas on the same GPU using CUDA streams. The overhead of exchange attempts is negligible; the net effect is that each replica converges faster, and the combined exploration rate scales approximately linearly with replica count.
 
-The AI steering layer is where the efficiency gain compounds. Standard metadynamics places a bias on collective variables that discourages re-visiting already-explored states. But choosing which collective variables to bias is non-trivial — bias the wrong ones and you waste compute on directions of conformational space that do not contain pockets. Our co-running neural network monitors the visited conformational space in real time and dynamically adjusts the bias direction toward high-novelty regions. In practice, this reduces the compute required to find a cryptic pocket event by 3–4× compared to unsteered metadynamics on benchmark systems.`,
+The AI steering layer is where the efficiency gain compounds. Standard metadynamics places a bias on collective variables that discourages re-visiting already-explored states. But choosing which collective variables to bias is non-trivial bias the wrong ones and you waste compute on directions of conformational space that do not contain pockets. Our co-running neural network monitors the visited conformational space in real time and dynamically adjusts the bias direction toward high-novelty regions. In practice, this reduces the compute required to find a cryptic pocket event by 3–4× compared to unsteered metadynamics on benchmark systems.`,
   },
 ]
 
@@ -112,7 +112,7 @@ function PostView({ post, onBack }: { post: PostFull; onBack: () => void }) {
   )
 }
 
-export default function Blog() {
+export default function BehindTheScience() {
   const navigate = useNavigate()
   const [active, setActive] = useState<PostFull | null>(null)
 
@@ -156,10 +156,10 @@ export default function Blog() {
             style={{ marginBottom: 52 }}
           >
             <h1 style={{ fontSize: 34, fontWeight: 700, color: 'var(--text-dark)', letterSpacing: '-0.8px', marginBottom: 10 }}>
-              Blog
+              Behind the Science
             </h1>
             <p style={{ fontSize: 14, color: 'var(--text-muted)', lineHeight: 1.65 }}>
-              Science, engineering, and drug discovery from the AlloSphere team.
+              Foundational science and engineering behind AlloSphere.
             </p>
           </motion.div>
 

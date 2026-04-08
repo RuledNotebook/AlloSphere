@@ -76,7 +76,7 @@ export default function Scout() {
       <ToolHeader
         eyebrow="Conformational Sampling"
         title="Allos Scout"
-        subtitle="GPU-accelerated enhanced sampling molecular dynamics with AI-steered collective variable bias. Generates a dense, annotated conformational landscape of any target protein — in hours, not weeks."
+        subtitle="GPU-accelerated enhanced sampling molecular dynamics with AI-steered collective variable bias. Generates a dense, annotated conformational landscape of any target protein in hours, not weeks."
         Icon={Dna}
         stats={[
           { value: '12 μs/day', label: 'MD throughput' },
@@ -100,7 +100,7 @@ export default function Scout() {
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff5f57' }} />
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e' }} />
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
-            <span style={{ marginLeft: 12, fontSize: 11, fontWeight: 600, color: '#555', fontFamily: 'Inter, sans-serif' }}>Scout — HSP90-N · REST2 · 8 replicas</span>
+            <span style={{ marginLeft: 12, fontSize: 11, fontWeight: 600, color: '#555', fontFamily: 'Inter, sans-serif' }}>Scout HSP90-N · REST2 · 8 replicas</span>
             <div style={{ marginLeft: 'auto', padding: '2px 10px', background: '#28c840', borderRadius: 4, color: '#fff', fontSize: 11 }}>● RUNNING</div>
           </div>
 
@@ -152,7 +152,7 @@ export default function Scout() {
             </div>
 
             <div style={{ width: 180, background: '#0f1117', padding: 10, fontFamily: 'monospace', fontSize: 11.5, color: '#8a9', overflowY: 'auto', flexShrink: 0 }}>
-              {['[00:00] REST2 init — 8 replicas', '[00:12] Frame 1 complete', '[01:44] Bias update Δ=0.12', '[03:22] Replica swap R3↔R4', '[05:01] Frame 100 · 1.0μs', '[08:40] New pocket detected!', '[09:11] Bias update Δ=0.31', '[12:30] Frame 200 · 2.1μs', '[14:02] Replica swap R1↔R2', '[18:55] Frame 300 · 3.2μs', '[21:30] Bias update Δ=0.08', '[25:12] Frame 400 · 4.3μs', '[26:44] Frame 412 · 4.8μs'].map((l, i) => (
+              {['[00:00] REST2 init 8 replicas', '[00:12] Frame 1 complete', '[01:44] Bias update Δ=0.12', '[03:22] Replica swap R3↔R4', '[05:01] Frame 100 · 1.0μs', '[08:40] New pocket detected!', '[09:11] Bias update Δ=0.31', '[12:30] Frame 200 · 2.1μs', '[14:02] Replica swap R1↔R2', '[18:55] Frame 300 · 3.2μs', '[21:30] Bias update Δ=0.08', '[25:12] Frame 400 · 4.3μs', '[26:44] Frame 412 · 4.8μs'].map((l, i) => (
                 <div key={i} style={{ marginBottom: 4, color: l.includes('pocket') ? '#d97272' : '#8a9' }}>{l}</div>
               ))}
               <div style={{ color: '#febc2e', marginTop: 4 }}>▸ Sampling…</div>
@@ -169,7 +169,7 @@ export default function Scout() {
         <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4 }}>
           <div className="page-eyebrow">How It Works</div>
           <p style={{ fontSize: 14, color: 'var(--text-mid)', lineHeight: 1.8, maxWidth: 580, marginBottom: 36 }}>
-            Scout launches an OpenMM simulation with REST2 temperature replicas. A co-running AI model monitors the visited conformational space and incrementally adjusts the metadynamics bias to steer sampling away from already-explored geometries. Every frame is written to disk with full per-residue annotations — ready for Reveal's pocket GNN without any manual preprocessing.
+            Scout launches an OpenMM simulation with REST2 temperature replicas. A co-running AI model monitors the visited conformational space and incrementally adjusts the metadynamics bias to steer sampling away from already-explored geometries. Every frame is written to disk with full per-residue annotations ready for Reveal's pocket GNN without any manual preprocessing.
           </p>
         </motion.div>
 

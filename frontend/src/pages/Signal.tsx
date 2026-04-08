@@ -64,8 +64,8 @@ function PathwayScoreBar() {
 }
 
 const features = [
-  { Icon: GitBranch,      title: 'Residue-Level Communication Graph', body: 'Every protein is modelled as a weighted graph where nodes are residues and edge weights encode dynamic cross-correlation from the MD trajectory. The graph transformer learns to trace signal propagation from the cryptic pocket to the functional site across this network — identifying bottleneck residues that are critical for allosteric transmission.' },
-  { Icon: Timer,          title: '8-Minute Forward Pass',             body: 'A full perturbation MD calculation — which involves running dozens of independent simulations with perturbed residues and computing the resulting changes in dynamics — takes 2–4 days on a cluster. Reveal replaces this with a single graph transformer forward pass: 8 minutes on one GPU, with uncertainty estimates included.' },
+  { Icon: GitBranch,      title: 'Residue-Level Communication Graph', body: 'Every protein is modelled as a weighted graph where nodes are residues and edge weights encode dynamic cross-correlation from the MD trajectory. The graph transformer learns to trace signal propagation from the cryptic pocket to the functional site across this network identifying bottleneck residues that are critical for allosteric transmission.' },
+  { Icon: Timer,          title: '8-Minute Forward Pass',             body: 'A full perturbation MD calculation which involves running dozens of independent simulations with perturbed residues and computing the resulting changes in dynamics takes 2–4 days on a cluster. Reveal replaces this with a single graph transformer forward pass: 8 minutes on one GPU, with uncertainty estimates included.' },
   { Icon: ArrowRightLeft, title: 'Binding-to-Function Propagation',   body: 'The key scientific question Dock cannot answer is: does binding at the cryptic pocket actually change anything at the functional site? Signal computes the predicted delta in functional-site dynamics caused by binding, expressed as a ΔΔG and a per-residue pathway score map.' },
   { Icon: Microscope,     title: 'GPCR & Kinase Benchmarking',        body: 'The model was trained and validated on 1,200 confirmed allosteric modulators across GPCRs, kinases, and nuclear receptors from the ATLAS database. It achieves 84% accuracy at classifying agonist, antagonist, and neutral modulator outcomes on held-out receptors not seen during training.' },
 ]
@@ -76,7 +76,7 @@ export default function Signal() {
       <ToolHeader
         eyebrow="Allostery Prediction"
         title="Allos Signal"
-        subtitle="A GPU-accelerated graph transformer that predicts whether binding at a cryptic pocket propagates a conformational signal to the functional site — in 8 minutes instead of days of perturbation MD."
+        subtitle="A GPU-accelerated graph transformer that predicts whether binding at a cryptic pocket propagates a conformational signal to the functional site in 8 minutes instead of days of perturbation MD."
         Icon={Radio}
         stats={[
           { value: '8 min',   label: 'vs. 2–4 day perturbation MD' },
@@ -99,7 +99,7 @@ export default function Signal() {
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff5f57' }} />
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e' }} />
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
-            <span style={{ marginLeft: 12, fontSize: 11, fontWeight: 600, color: '#555', fontFamily: 'Inter, sans-serif' }}>Signal — ALO-0042 · HSP90-N · Pocket P-001</span>
+            <span style={{ marginLeft: 12, fontSize: 11, fontWeight: 600, color: '#555', fontFamily: 'Inter, sans-serif' }}>Signal ALO-0042 · HSP90-N · Pocket P-001</span>
             <div style={{ marginLeft: 'auto', padding: '2px 10px', background: '#28c840', borderRadius: 4, color: '#fff', fontSize: 11, fontFamily: 'Inter, sans-serif' }}>● COMPLETE · 7m 42s</div>
           </div>
           <div style={{ display: 'flex', height: 310 }}>
@@ -143,7 +143,7 @@ export default function Signal() {
         <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4 }}>
           <div className="page-eyebrow">How It Works</div>
           <p style={{ fontSize: 14, color: 'var(--text-mid)', lineHeight: 1.8, maxWidth: 580, marginBottom: 36 }}>
-            Signal constructs a dynamic residue graph from the Scout trajectory, weighting edges by cross-correlation coefficients computed across all frames. The graph transformer — trained on 1,200 ATLAS allosteric modulators — traces how a binding event at the Reveal pocket perturbs node features and propagates that perturbation to the functional site, predicting the resultant ΔΔG and modulator class.
+            Signal constructs a dynamic residue graph from the Scout trajectory, weighting edges by cross-correlation coefficients computed across all frames. The graph transformer trained on 1,200 ATLAS allosteric modulators traces how a binding event at the Reveal pocket perturbs node features and propagates that perturbation to the functional site, predicting the resultant ΔΔG and modulator class.
           </p>
         </motion.div>
         <div className="card-grid">

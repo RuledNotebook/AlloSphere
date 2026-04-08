@@ -35,16 +35,16 @@ export default function Topbar() {
         <div style={{ flex: 1 }} />
 
         <button
-          onClick={() => navigate('/blog')}
+          onClick={() => navigate('/science')}
           style={{
             background: 'none', border: 'none', cursor: 'pointer',
             fontSize: 13, fontWeight: 500, fontFamily: 'Inter, sans-serif',
-            color: location.pathname === '/blog' ? 'var(--deep-coral)' : 'var(--text-mid)',
+            color: location.pathname === '/science' ? 'var(--deep-coral)' : 'var(--text-mid)',
             padding: '4px 8px', borderRadius: 6,
             transition: 'color 0.15s',
           }}
           onMouseEnter={e => (e.currentTarget.style.color = 'var(--deep-coral)')}
-          onMouseLeave={e => (e.currentTarget.style.color = location.pathname === '/blog' ? 'var(--deep-coral)' : 'var(--text-mid)')}
+          onMouseLeave={e => (e.currentTarget.style.color = location.pathname === '/science' ? 'var(--deep-coral)' : 'var(--text-mid)')}
         >
           Blog
         </button>
@@ -119,7 +119,7 @@ export default function Topbar() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
           >
-            Get Started
+            Request Access
           </motion.button>
         )}
       </header>

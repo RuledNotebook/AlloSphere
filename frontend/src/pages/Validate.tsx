@@ -53,8 +53,8 @@ const SOP_LINES = [
 const features = [
   { Icon: ClipboardList, title: 'Compound-Specific SOP Generation',  body: 'The LLM receives the allosteric pathway from Signal, the pocket residues from Reveal, and the compound structure from Rank, then drafts a fully populated SOP: reagent list, concentrations, timepoints, quench conditions, and expected readout ranges. It is grounded in the specific mechanism, not a generic template.' },
   { Icon: TestTube2,     title: 'Assay Modality Recommendation',     body: 'Validate selects the most informative assay modality based on which residues are in the allosteric pathway. Backbone-dominated pathways are routed to HDX-MS; sidechain-dominated ones to NMR; fast binding kinetics to SPR. Multiple assays are ranked by expected information gain per experimental cost.' },
-  { Icon: Telescope,     title: 'Predicted Assay Signatures',        body: 'Before running a single experiment, Validate predicts the expected readout for both bound and unbound states — the ΔD profile for HDX-MS, the chemical shift perturbation map for NMR, the thermogram shape for ITC. Researchers know exactly what a positive result looks like before touching the bench.' },
-  { Icon: BookOpen,      title: 'ELN-Ready Wet-Lab Output',          body: 'Every SOP exports as a structured Markdown document compatible with Benchling, Dotmatics, and LabArchives. Binding and non-binding control predictions are always included — so researchers can distinguish true allosteric activity from compound aggregation or assay artifacts.' },
+  { Icon: Telescope,     title: 'Predicted Assay Signatures',        body: 'Before running a single experiment, Validate predicts the expected readout for both bound and unbound states the ΔD profile for HDX-MS, the chemical shift perturbation map for NMR, the thermogram shape for ITC. Researchers know exactly what a positive result looks like before touching the bench.' },
+  { Icon: BookOpen,      title: 'ELN-Ready Wet-Lab Output',          body: 'Every SOP exports as a structured Markdown document compatible with Benchling, Dotmatics, and LabArchives. Binding and non-binding control predictions are always included so researchers can distinguish true allosteric activity from compound aggregation or assay artifacts.' },
 ]
 
 export default function Validate() {
@@ -63,7 +63,7 @@ export default function Validate() {
       <ToolHeader
         eyebrow="Experimental Validation"
         title="Allos Validate"
-        subtitle="ML-designed wet-lab protocols with predicted assay signatures — so researchers go from ranked compounds to pipette-ready SOPs with confidence in what a positive result looks like."
+        subtitle="ML-designed wet-lab protocols with predicted assay signatures so researchers go from ranked compounds to pipette-ready SOPs with confidence in what a positive result looks like."
         Icon={FlaskConical}
         stats={[
           { value: '5',    label: 'Assay modalities' },
@@ -86,7 +86,7 @@ export default function Validate() {
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff5f57' }} />
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e' }} />
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
-            <span style={{ marginLeft: 12, fontSize: 11, fontWeight: 600, color: '#555', fontFamily: 'Inter, sans-serif' }}>Validate — ALO-0042 · HSP90-N · SOP generation</span>
+            <span style={{ marginLeft: 12, fontSize: 11, fontWeight: 600, color: '#555', fontFamily: 'Inter, sans-serif' }}>Validate ALO-0042 · HSP90-N · SOP generation</span>
             <div style={{ marginLeft: 'auto', padding: '2px 10px', background: '#28c840', borderRadius: 4, color: '#fff', fontSize: 11, fontFamily: 'Inter, sans-serif' }}>● COMPLETE</div>
           </div>
           <div style={{ display: 'flex', height: 310 }}>
@@ -138,7 +138,7 @@ export default function Validate() {
         <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4 }}>
           <div className="page-eyebrow">How It Works</div>
           <p style={{ fontSize: 14, color: 'var(--text-mid)', lineHeight: 1.8, maxWidth: 580, marginBottom: 36 }}>
-            Validate receives the Signal pathway map and Rank output for a given compound, identifies which residues in the allosteric path are most experimentally accessible, and selects the assay that gives the highest signal-to-noise for that specific mechanism. The LLM then populates the full SOP — concentrations, timepoints, controls — and generates quantitative predictions for each readout so the wet-lab team has a clear falsifiable hypothesis before starting.
+            Validate receives the Signal pathway map and Rank output for a given compound, identifies which residues in the allosteric path are most experimentally accessible, and selects the assay that gives the highest signal-to-noise for that specific mechanism. The LLM then populates the full SOP concentrations, timepoints, controls and generates quantitative predictions for each readout so the wet-lab team has a clear falsifiable hypothesis before starting.
           </p>
         </motion.div>
         <div className="card-grid">

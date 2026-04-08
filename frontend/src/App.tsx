@@ -26,7 +26,7 @@ function AppInner() {
             <Route path="/signal"   element={<Signal />} />
             <Route path="/rank"     element={<Rank />} />
             <Route path="/validate" element={<Validate />} />
-            <Route path="/blog"     element={<Blog />} />
+            <Route path="/science"     element={<Blog />} />
           </Routes>
         </AnimatePresence>
       </main>

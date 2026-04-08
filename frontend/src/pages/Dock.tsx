@@ -55,7 +55,7 @@ function PoseViewer() {
 const features = [
   { Icon: Gauge,    title: '2 Million Poses Per Hour',       body: 'AutoDock-GPU is compiled with custom CUDA kernels that batch ligand preparation, grid calculation, and scoring across all conformational frames simultaneously. The scheduler prioritizes frames where Scout identified high-RMSF regions, focusing compute where cryptic pockets are most likely open.' },
   { Icon: Scale,    title: 'Hybrid Physics + GNN Scoring',  body: 'Initial poses are scored with the Vina empirical force field, which is fast but poorly calibrated for cryptic sites with unusual geometry. A re-scoring GNN trained on 480,000 crystal structures corrects systematic errors in non-orthosteric geometries before the final ranking.' },
-  { Icon: Grid3x3,  title: 'True Ensemble Docking',         body: 'Every compound is docked against all 500 conformational frames — not a single receptor or a hand-picked subset. The ensemble score is a Boltzmann-weighted average across frames, naturally down-weighting conformations where the pocket is partially closed.' },
+  { Icon: Grid3x3,  title: 'True Ensemble Docking',         body: 'Every compound is docked against all 500 conformational frames not a single receptor or a hand-picked subset. The ensemble score is a Boltzmann-weighted average across frames, naturally down-weighting conformations where the pocket is partially closed.' },
   { Icon: FileDown, title: 'Schrodinger-Compatible Export', body: 'All top poses are exported as .mae and .sdf files compatible with Glide SP/XP re-scoring, Phase shape screening, and FEP+ relative binding free energy calculations. No manual format conversion needed.' },
 ]
 
@@ -88,13 +88,13 @@ export default function Dock() {
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff5f57' }} />
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e' }} />
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
-            <span style={{ marginLeft: 12, fontSize: 11, fontWeight: 600, color: '#555', fontFamily: 'Inter, sans-serif' }}>Dock — 10M compounds · 500 conformations · AutoDock-GPU</span>
+            <span style={{ marginLeft: 12, fontSize: 11, fontWeight: 600, color: '#555', fontFamily: 'Inter, sans-serif' }}>Dock 10M compounds · 500 conformations · AutoDock-GPU</span>
             <div style={{ marginLeft: 'auto', padding: '2px 10px', background: '#febc2e', borderRadius: 4, color: '#fff', fontSize: 11, fontFamily: 'Inter, sans-serif' }}>● RUNNING</div>
           </div>
           <div style={{ display: 'flex', height: 310 }}>
             <div style={{ flex: 1, padding: 14, display: 'flex', flexDirection: 'column', gap: 12 }}>
               <div>
-                <div style={{ fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 6 }}>Best Pose — ALO-0042</div>
+                <div style={{ fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 6 }}>Best Pose ALO-0042</div>
                 <PoseViewer />
               </div>
               <div>

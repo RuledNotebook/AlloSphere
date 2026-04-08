@@ -1,30 +1,36 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Mail, Lock, User, ArrowRight } from 'lucide-react'
+import { X, Mail, User, ArrowRight, CheckCircle, AlertCircle } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
+import { supabase } from '../lib/supabase'
 
 interface AuthModalProps {
   onClose: () => void
 }
 
-type Tab = 'signin' | 'signup'
-
 export default function AuthModal({ onClose }: AuthModalProps) {
   const { signIn } = useAuth()
-  const [tab, setTab] = useState<Tab>('signin')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [role, setRole] = useState('')
+  const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
-  function handleGoogleSignIn() {
-    signIn({ name: 'Researcher', email: 'researcher@gmail.com' })
-    onClose()
-  }
-
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+    setLoading(true)
+    setError('')
+    const { error: dbError } = await supabase.from('waitlist').insert({ name, email, role })
+    if (dbError && dbError.code !== '23505') {
+      console.error('Supabase error:', dbError)
+      setError(`Error: ${dbError.message}`)
+      setLoading(false)
+      return
+    }
     signIn({ name: name || email.split('@')[0], email })
-    onClose()
+    setSubmitted(true)
+    setLoading(false)
   }
 
   return (
@@ -68,90 +74,106 @@ export default function AuthModal({ onClose }: AuthModalProps) {
           <X size={15} />
         </button>
 
-        <div style={{ marginBottom: 28 }}>
-          <div style={{ fontSize: 11, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--coral)', fontWeight: 600, marginBottom: 6 }}>
-            AlloSphere
-          </div>
-          <div style={{ fontSize: 22, fontWeight: 700, color: 'var(--text-dark)', letterSpacing: '-0.4px' }}>
-            {tab === 'signin' ? 'Welcome back' : 'Create your account'}
-          </div>
-          <div style={{ fontSize: 13, color: 'var(--text-muted)', marginTop: 4 }}>
-            {tab === 'signin' ? 'Sign in to access the full platform.' : 'Get started with AlloSphere today.'}
-          </div>
-        </div>
-
-        <button
-          onClick={handleGoogleSignIn}
-          style={{
-            width: '100%', padding: '11px 16px',
-            border: '1.5px solid var(--light-pink)',
-            borderRadius: 12, background: '#fff',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
-            cursor: 'pointer', fontSize: 14, fontWeight: 500,
-            color: 'var(--text-dark)', marginBottom: 20,
-            transition: 'all 0.18s ease', fontFamily: 'Inter, sans-serif',
-          }}
-          onMouseEnter={e => (e.currentTarget.style.borderColor = 'var(--salmon)')}
-          onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--light-pink)')}
-        >
-          <GoogleIcon />
-          Continue with Google
-        </button>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
-          <div style={{ flex: 1, height: 1, background: 'var(--blush)' }} />
-          <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>or</span>
-          <div style={{ flex: 1, height: 1, background: 'var(--blush)' }} />
-        </div>
-
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <AnimatePresence>
-            {tab === 'signup' && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                style={{ overflow: 'hidden' }}
+        <AnimatePresence mode="wait">
+          {submitted ? (
+            <motion.div
+              key="success"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              style={{ textAlign: 'center', padding: '12px 0' }}
+            >
+              <CheckCircle size={40} color="var(--coral)" strokeWidth={1.5} style={{ marginBottom: 16 }} />
+              <div style={{ fontSize: 20, fontWeight: 700, color: 'var(--text-dark)', letterSpacing: '-0.3px', marginBottom: 8 }}>
+                You're on the list
+              </div>
+              <div style={{ fontSize: 13.5, color: 'var(--text-muted)', lineHeight: 1.65 }}>
+                We'll reach out as AlloSphere approaches early access. We'll share updates on the platform's development as it progresses.
+              </div>
+              <button
+                onClick={onClose}
+                className="btn-primary"
+                style={{ marginTop: 24, padding: '10px 28px', fontSize: 13 }}
               >
-                <Field icon={<User size={14} />} placeholder="Full name" value={name} onChange={setName} />
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          <Field icon={<Mail size={14} />} type="email" placeholder="Email address" value={email} onChange={setEmail} required />
-          <Field icon={<Lock size={14} />} type="password" placeholder="Password" value={password} onChange={setPassword} required />
-
-          <button
-            type="submit"
-            style={{
-              marginTop: 4, padding: '12px',
-              background: 'linear-gradient(135deg, var(--coral), var(--deep-coral))',
-              color: '#fff', border: 'none', borderRadius: 12,
-              fontSize: 14, fontWeight: 600, cursor: 'pointer',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-              fontFamily: 'Inter, sans-serif', transition: 'opacity 0.18s',
-            }}
-          >
-            {tab === 'signin' ? 'Sign in' : 'Create account'}
-            <ArrowRight size={14} />
-          </button>
-        </form>
-
-        <div style={{ marginTop: 20, textAlign: 'center', fontSize: 13, color: 'var(--text-muted)' }}>
-          {tab === 'signin' ? (
-            <>No account?{' '}
-              <button onClick={() => setTab('signup')} style={{ background: 'none', border: 'none', color: 'var(--deep-coral)', fontWeight: 600, cursor: 'pointer', fontFamily: 'Inter, sans-serif', fontSize: 13 }}>
-                Create one
+                Close
               </button>
-            </>
+            </motion.div>
           ) : (
-            <>Already have an account?{' '}
-              <button onClick={() => setTab('signin')} style={{ background: 'none', border: 'none', color: 'var(--deep-coral)', fontWeight: 600, cursor: 'pointer', fontFamily: 'Inter, sans-serif', fontSize: 13 }}>
-                Sign in
-              </button>
-            </>
+            <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <div style={{ marginBottom: 28 }}>
+                <div style={{ fontSize: 11, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--coral)', fontWeight: 600, marginBottom: 6 }}>
+                  Early Access
+                </div>
+                <div style={{ fontSize: 22, fontWeight: 700, color: 'var(--text-dark)', letterSpacing: '-0.4px', marginBottom: 6 }}>
+                  Stay in the loop
+                </div>
+                <div style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.6 }}>
+                  AlloSphere is in active development. Leave your details and we'll notify you when early access opens.
+                </div>
+              </div>
+
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                <Field icon={<User size={14} />} placeholder="Full name" value={name} onChange={setName} />
+                <Field icon={<Mail size={14} />} type="email" placeholder="Work email" value={email} onChange={setEmail} required />
+
+                <div style={{
+                  border: '1.5px solid var(--light-pink)', borderRadius: 10,
+                  overflow: 'hidden', background: 'var(--surface)',
+                  transition: 'border-color 0.18s',
+                }}
+                  onFocusCapture={e => (e.currentTarget.style.borderColor = 'var(--coral)')}
+                  onBlurCapture={e => (e.currentTarget.style.borderColor = 'var(--light-pink)')}
+                >
+                  <select
+                    value={role}
+                    onChange={e => setRole(e.target.value)}
+                    style={{
+                      width: '100%', padding: '10px 14px',
+                      border: 'none', outline: 'none', background: 'transparent',
+                      fontSize: 13.5, color: role ? 'var(--text-dark)' : 'var(--text-muted)',
+                      fontFamily: 'Inter, sans-serif', cursor: 'pointer',
+                    }}
+                  >
+                    <option value="" disabled>Role (optional)</option>
+                    <option>Medicinal chemist</option>
+                    <option>Computational biologist</option>
+                    <option>Structural biologist</option>
+                    <option>Drug discovery researcher</option>
+                    <option>Academic researcher</option>
+                    <option>Biotech / pharma</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+
+                {error && (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '8px 12px', background: '#fff0f0', border: '1px solid var(--light-pink)', borderRadius: 8, fontSize: 13, color: 'var(--deep-coral)' }}>
+                    <AlertCircle size={13} />
+                    {error}
+                  </div>
+                )}
+                <button
+                  type="submit"
+                  disabled={loading}
+                  style={{
+                    marginTop: 4, padding: '12px',
+                    background: 'linear-gradient(135deg, var(--coral), var(--deep-coral))',
+                    color: '#fff', border: 'none', borderRadius: 12,
+                    fontSize: 14, fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                    fontFamily: 'Inter, sans-serif', opacity: loading ? 0.7 : 1, transition: 'opacity 0.18s',
+                  }}
+                >
+                  {loading ? 'Submitting...' : 'Request early access'}
+                  {!loading && <ArrowRight size={14} />}
+                </button>
+              </form>
+
+              <div style={{ marginTop: 16, fontSize: 12, color: 'var(--text-muted)', textAlign: 'center' }}>
+                No spam. We'll only contact you about AlloSphere access.
+              </div>
+            </motion.div>
           )}
-        </div>
+        </AnimatePresence>
       </motion.div>
     </motion.div>
   )
@@ -188,16 +210,5 @@ function Field({ icon, placeholder, value, onChange, type = 'text', required = f
         }}
       />
     </div>
-  )
-}
-
-function GoogleIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 18 18">
-      <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/>
-      <path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z" fill="#34A853"/>
-      <path d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
-      <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z" fill="#EA4335"/>
-    </svg>
   )
 }

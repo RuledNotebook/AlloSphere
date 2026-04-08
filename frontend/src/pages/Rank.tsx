@@ -48,8 +48,8 @@ function RadarChart() {
 
 const features = [
   { Icon: BrainCircuit,      title: 'LLM Scientific Rationale',       body: 'For each top-ranked compound, a fine-tuned language model retrieves the 5 most structurally similar known allosteric drugs from ChEMBL and drafts a 3-paragraph rationale explaining the mechanism prediction, structural analogues, and suggested next experiments. Output is citation-grounded, not templated.' },
-  { Icon: SlidersHorizontal, title: 'Multi-Objective Pareto Frontier', body: 'No single weighting scheme is correct for all drug programs. Rank computes the Pareto frontier across 5 objectives — binding ΔG, allosteric signal score, ADMET composite, synthetic accessibility, and predicted selectivity — returning the full non-dominated set so medicinal chemists can apply program-specific filters.' },
-  { Icon: FileText,          title: 'ELN-Ready PDF Reports',          body: 'The ranked list exports as a structured PDF with compound structures, all scores, radar charts, and LLM rationale — formatted to paste directly into Benchling, Dotmatics, or paper lab notebooks. No figures to manually assemble or tables to reformat.' },
+  { Icon: SlidersHorizontal, title: 'Multi-Objective Pareto Frontier', body: 'No single weighting scheme is correct for all drug programs. Rank computes the Pareto frontier across 5 objectives binding ΔG, allosteric signal score, ADMET composite, synthetic accessibility, and predicted selectivity returning the full non-dominated set so medicinal chemists can apply program-specific filters.' },
+  { Icon: FileText,          title: 'ELN-Ready PDF Reports',          body: 'The ranked list exports as a structured PDF with compound structures, all scores, radar charts, and LLM rationale formatted to paste directly into Benchling, Dotmatics, or paper lab notebooks. No figures to manually assemble or tables to reformat.' },
   { Icon: BarChart3,         title: 'Integrated Score Aggregation',   body: 'Aggregates Vina ΔG, GNN re-score, allosteric pathway score, SwissADME / ADMETlab 2.0 flags, SAscore, and predicted kinase selectivity panel into a single normalized rank. Each upstream score is individually retrievable for custom post-hoc analysis.' },
 ]
 
@@ -59,7 +59,7 @@ export default function Rank() {
       <ToolHeader
         eyebrow="Hit Prioritization"
         title="Allos Rank"
-        subtitle="Pareto-optimal multi-objective ranking of docking hits across binding affinity, allosteric signal, ADMET, synthetic accessibility, and selectivity — with LLM-written scientific rationale per compound."
+        subtitle="Pareto-optimal multi-objective ranking of docking hits across binding affinity, allosteric signal, ADMET, synthetic accessibility, and selectivity with LLM-written scientific rationale per compound."
         Icon={ListOrdered}
         stats={[
           { value: 'Pareto',    label: 'Ranking method' },
@@ -82,7 +82,7 @@ export default function Rank() {
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff5f57' }} />
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e' }} />
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
-            <span style={{ marginLeft: 12, fontSize: 11, fontWeight: 600, color: '#555', fontFamily: 'Inter, sans-serif' }}>Rank — 1.34M hits · Pareto frontier · LLM rationale</span>
+            <span style={{ marginLeft: 12, fontSize: 11, fontWeight: 600, color: '#555', fontFamily: 'Inter, sans-serif' }}>Rank 1.34M hits · Pareto frontier · LLM rationale</span>
             <div style={{ marginLeft: 'auto', padding: '2px 10px', background: '#28c840', borderRadius: 4, color: '#fff', fontSize: 11, fontFamily: 'Inter, sans-serif' }}>● COMPLETE · 1m 48s</div>
           </div>
           <div style={{ display: 'flex', height: 310 }}>
