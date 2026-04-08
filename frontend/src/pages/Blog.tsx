@@ -97,7 +97,7 @@ function PostView({ post, onBack }: { post: PostFull; onBack: () => void }) {
       >
         <ArrowLeft size={14} /> Back to posts
       </button>
-      <div style={{ fontSize: 10, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--coral)', fontWeight: 600, marginBottom: 12 }}>{post.tag}</div>
+      <div style={{ fontSize: 11, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--coral)', fontWeight: 600, marginBottom: 12 }}>{post.tag}</div>
       <h1 style={{ fontSize: 30, fontWeight: 700, color: 'var(--text-dark)', letterSpacing: '-0.5px', lineHeight: 1.25, marginBottom: 16 }}>{post.title}</h1>
       <div style={{ display: 'flex', gap: 16, fontSize: 12, color: 'var(--text-muted)', marginBottom: 36, paddingBottom: 32, borderBottom: '1px solid var(--light-pink)' }}>
         <span>{post.date}</span>
@@ -184,7 +184,7 @@ export default function Blog() {
               >
                 <div style={{ flex: 1 }}>
                   <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 8 }}>
-                    <span style={{ fontSize: 10, fontWeight: 600, padding: '2px 9px', borderRadius: 20, background: 'var(--blush)', color: 'var(--deep-coral)', border: '1px solid var(--light-pink)' }}>
+                    <span style={{ fontSize: 11, fontWeight: 600, padding: '2px 9px', borderRadius: 20, background: 'var(--blush)', color: 'var(--deep-coral)', border: '1px solid var(--light-pink)' }}>
                       {post.tag}
                     </span>
                     <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>{post.date}</span>

@@ -90,32 +90,32 @@ export default function RevealPage() {
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e' }} />
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
             <span style={{ marginLeft: 12, fontSize: 11, fontWeight: 600, color: '#555', fontFamily: 'Inter, sans-serif' }}>Reveal — HSP90-N · 500 frames · EG-GNN v2</span>
-            <div style={{ marginLeft: 'auto', padding: '2px 10px', background: '#28c840', borderRadius: 4, color: '#fff', fontSize: 10, fontFamily: 'Inter, sans-serif' }}>● COMPLETE</div>
+            <div style={{ marginLeft: 'auto', padding: '2px 10px', background: '#28c840', borderRadius: 4, color: '#fff', fontSize: 11, fontFamily: 'Inter, sans-serif' }}>● COMPLETE</div>
           </div>
           <div style={{ display: 'flex', height: 310 }}>
             <div style={{ flex: 1, padding: 14, display: 'flex', flexDirection: 'column', gap: 12 }}>
               <div>
-                <div style={{ fontSize: 9, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 6 }}>Surface Druggability Heatmap</div>
+                <div style={{ fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 6 }}>Surface Druggability Heatmap</div>
                 <PocketHeatmap />
               </div>
               <div>
-                <div style={{ fontSize: 9, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 4 }}>Pocket Score Over Trajectory</div>
+                <div style={{ fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 4 }}>Pocket Score Over Trajectory</div>
                 <PocketTimeline />
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 9, color: '#bbb', marginTop: 2 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: '#bbb', marginTop: 2 }}>
                   <span>Frame 0</span><span>Pocket opens @ frame 9 →</span><span>Frame 500</span>
                 </div>
               </div>
             </div>
             <div style={{ width: 210, borderLeft: '1px solid #ddd', padding: 12, background: '#eee8e8' }}>
-              <div style={{ fontSize: 9, letterSpacing: 1, textTransform: 'uppercase', color: '#999', marginBottom: 10 }}>Detected Pockets</div>
+              <div style={{ fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', color: '#999', marginBottom: 10 }}>Detected Pockets</div>
               {POCKETS.map(p => (
                 <div key={p.id} style={{ background: '#fff', borderRadius: 8, padding: 10, marginBottom: 8, border: p.id === 'P-001' ? '1.5px solid #d97272' : '1px solid #e8e0e0' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
                     <span style={{ fontWeight: 700, color: '#333', fontFamily: 'Inter, sans-serif', fontSize: 11 }}>{p.id}</span>
-                    <span style={{ fontSize: 10, fontWeight: 600, color: p.drug === 'High' ? '#cc6262' : p.drug === 'Medium' ? '#d97272' : '#aaa', fontFamily: 'Inter, sans-serif' }}>{p.drug}</span>
+                    <span style={{ fontSize: 11, fontWeight: 600, color: p.drug === 'High' ? '#cc6262' : p.drug === 'Medium' ? '#d97272' : '#aaa', fontFamily: 'Inter, sans-serif' }}>{p.drug}</span>
                   </div>
-                  <div style={{ fontSize: 9.5, color: '#888', marginBottom: 3 }}>Res {p.residues}</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 9.5, color: '#666' }}>
+                  <div style={{ fontSize: 11.5, color: '#888', marginBottom: 3 }}>Res {p.residues}</div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11.5, color: '#666' }}>
                     <span>Vol: {p.vol}</span>
                     <span style={{ color: '#cc6262', fontWeight: 600 }}>Score: {p.score}</span>
                   </div>
@@ -124,10 +124,10 @@ export default function RevealPage() {
                   </div>
                 </div>
               ))}
-              <div style={{ fontSize: 9, color: '#aaa', textAlign: 'center', marginTop: 4, fontFamily: 'Inter, sans-serif' }}>3 pockets · 2.1 min elapsed</div>
+              <div style={{ fontSize: 11, color: '#aaa', textAlign: 'center', marginTop: 4, fontFamily: 'Inter, sans-serif' }}>3 pockets · 2.1 min elapsed</div>
             </div>
           </div>
-          <div style={{ background: '#cc6262', padding: '4px 14px', display: 'flex', gap: 20, color: '#fff', fontSize: 9.5, fontFamily: 'Inter, sans-serif' }}>
+          <div style={{ background: '#cc6262', padding: '4px 14px', display: 'flex', gap: 20, color: '#fff', fontSize: 11.5, fontFamily: 'Inter, sans-serif' }}>
             <span>EG-GNN v2</span><span>PyTorch Geometric</span><span>CUDA 12.2</span><span style={{ marginLeft: 'auto' }}>3 pockets detected · export ready</span>
           </div>
         </div>

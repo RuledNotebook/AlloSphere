@@ -101,26 +101,26 @@ export default function Scout() {
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e' }} />
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
             <span style={{ marginLeft: 12, fontSize: 11, fontWeight: 600, color: '#555', fontFamily: 'Inter, sans-serif' }}>Scout — HSP90-N · REST2 · 8 replicas</span>
-            <div style={{ marginLeft: 'auto', padding: '2px 10px', background: '#28c840', borderRadius: 4, color: '#fff', fontSize: 10 }}>● RUNNING</div>
+            <div style={{ marginLeft: 'auto', padding: '2px 10px', background: '#28c840', borderRadius: 4, color: '#fff', fontSize: 11 }}>● RUNNING</div>
           </div>
 
           <div style={{ display: 'flex', height: 320 }}>
             <div style={{ width: 160, background: '#eee8e8', borderRight: '1px solid #ddd', padding: 12, flexShrink: 0, overflowY: 'auto' }}>
-              <div style={{ fontSize: 9, letterSpacing: 1, textTransform: 'uppercase', color: '#999', marginBottom: 8 }}>System</div>
+              <div style={{ fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', color: '#999', marginBottom: 8 }}>System</div>
               {[['Protein', 'HSP90-N'], ['Chain', 'A'], ['Residues', '229'], ['Water', '12,418'], ['Ions', 'Na⁺ Cl⁻']].map(([k, v]) => (
                 <div key={k} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 5, color: '#444' }}>
                   <span style={{ color: '#888' }}>{k}</span><span style={{ fontWeight: 600 }}>{v}</span>
                 </div>
               ))}
               <div style={{ height: 1, background: '#ddd', margin: '10px 0' }} />
-              <div style={{ fontSize: 9, letterSpacing: 1, textTransform: 'uppercase', color: '#999', marginBottom: 8 }}>GPU</div>
+              <div style={{ fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', color: '#999', marginBottom: 8 }}>GPU</div>
               {[['Device', 'A100'], ['VRAM', '38.2 GB'], ['Util', '97%'], ['Temp', '74°C']].map(([k, v]) => (
                 <div key={k} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 5, color: '#444' }}>
                   <span style={{ color: '#888' }}>{k}</span><span style={{ fontWeight: 600, color: v === '97%' ? '#d97272' : '#444' }}>{v}</span>
                 </div>
               ))}
               <div style={{ height: 1, background: '#ddd', margin: '10px 0' }} />
-              <div style={{ fontSize: 9, letterSpacing: 1, textTransform: 'uppercase', color: '#999', marginBottom: 8 }}>Progress</div>
+              <div style={{ fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', color: '#999', marginBottom: 8 }}>Progress</div>
               {[['Frames', '412 / 500'], ['Time', '4.82 μs'], ['Est. done', '38 min']].map(([k, v]) => (
                 <div key={k} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 5, color: '#444' }}>
                   <span style={{ color: '#888' }}>{k}</span><span style={{ fontWeight: 600 }}>{v}</span>
@@ -130,28 +130,28 @@ export default function Scout() {
 
             <div style={{ flex: 1, padding: 14, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 12 }}>
               <div>
-                <div style={{ fontSize: 9, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 6 }}>Conformation Viewer · Frame 412</div>
+                <div style={{ fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 6 }}>Conformation Viewer · Frame 412</div>
                 <ProteinViewer />
               </div>
               <div style={{ display: 'flex', gap: 12 }}>
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 9, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 4 }}>Potential Energy (kcal/mol)</div>
+                  <div style={{ fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 4 }}>Potential Energy (kcal/mol)</div>
                   <EnergyLine />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 9, color: '#bbb', marginTop: 2 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: '#bbb', marginTop: 2 }}>
                     <span>Frame 0</span><span>−346</span>
                   </div>
                 </div>
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 9, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 4 }}>Per-Residue RMSF (Å)</div>
+                  <div style={{ fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 4 }}>Per-Residue RMSF (Å)</div>
                   <RMSFBars />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 9, color: '#bbb', marginTop: 2 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: '#bbb', marginTop: 2 }}>
                     <span>Res 1</span><span>Max 14Å</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div style={{ width: 180, background: '#0f1117', padding: 10, fontFamily: 'monospace', fontSize: 9.5, color: '#8a9', overflowY: 'auto', flexShrink: 0 }}>
+            <div style={{ width: 180, background: '#0f1117', padding: 10, fontFamily: 'monospace', fontSize: 11.5, color: '#8a9', overflowY: 'auto', flexShrink: 0 }}>
               {['[00:00] REST2 init — 8 replicas', '[00:12] Frame 1 complete', '[01:44] Bias update Δ=0.12', '[03:22] Replica swap R3↔R4', '[05:01] Frame 100 · 1.0μs', '[08:40] New pocket detected!', '[09:11] Bias update Δ=0.31', '[12:30] Frame 200 · 2.1μs', '[14:02] Replica swap R1↔R2', '[18:55] Frame 300 · 3.2μs', '[21:30] Bias update Δ=0.08', '[25:12] Frame 400 · 4.3μs', '[26:44] Frame 412 · 4.8μs'].map((l, i) => (
                 <div key={i} style={{ marginBottom: 4, color: l.includes('pocket') ? '#d97272' : '#8a9' }}>{l}</div>
               ))}
@@ -159,7 +159,7 @@ export default function Scout() {
             </div>
           </div>
 
-          <div style={{ background: '#d97272', padding: '4px 14px', display: 'flex', gap: 20, color: '#fff', fontSize: 9.5, fontFamily: 'Inter, sans-serif' }}>
+          <div style={{ background: '#d97272', padding: '4px 14px', display: 'flex', gap: 20, color: '#fff', fontSize: 11.5, fontFamily: 'Inter, sans-serif' }}>
             <span>OpenMM 8.1</span><span>CUDA 12.2</span><span>REST2 · 8T</span><span>Frame 412</span><span style={{ marginLeft: 'auto' }}>4.82 μs complete</span>
           </div>
         </div>

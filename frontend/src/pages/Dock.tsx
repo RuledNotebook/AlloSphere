@@ -16,7 +16,7 @@ function DockingProgress() {
     <div style={{ padding: '10px 14px', background: '#1a1a1a', borderRadius: 6 }}>
       {['Conformation 1/500', 'Conformation 2/500', 'Conformation 3/500'].map((label, i) => (
         <div key={i} style={{ marginBottom: 8 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 9, color: '#aaa', marginBottom: 3, fontFamily: 'monospace' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: '#aaa', marginBottom: 3, fontFamily: 'monospace' }}>
             <span>{label}</span><span>{[100, 100, 67][i]}%</span>
           </div>
           <div style={{ height: 4, background: '#333', borderRadius: 2 }}>
@@ -24,7 +24,7 @@ function DockingProgress() {
           </div>
         </div>
       ))}
-      <div style={{ fontSize: 9, color: '#febc2e', marginTop: 4, fontFamily: 'monospace' }}>▸ 1,340,000 / 2,000,000 poses complete</div>
+      <div style={{ fontSize: 11, color: '#febc2e', marginTop: 4, fontFamily: 'monospace' }}>▸ 1,340,000 / 2,000,000 poses complete</div>
     </div>
   )
 }
@@ -89,22 +89,22 @@ export default function Dock() {
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e' }} />
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
             <span style={{ marginLeft: 12, fontSize: 11, fontWeight: 600, color: '#555', fontFamily: 'Inter, sans-serif' }}>Dock — 10M compounds · 500 conformations · AutoDock-GPU</span>
-            <div style={{ marginLeft: 'auto', padding: '2px 10px', background: '#febc2e', borderRadius: 4, color: '#fff', fontSize: 10, fontFamily: 'Inter, sans-serif' }}>● RUNNING</div>
+            <div style={{ marginLeft: 'auto', padding: '2px 10px', background: '#febc2e', borderRadius: 4, color: '#fff', fontSize: 11, fontFamily: 'Inter, sans-serif' }}>● RUNNING</div>
           </div>
           <div style={{ display: 'flex', height: 310 }}>
             <div style={{ flex: 1, padding: 14, display: 'flex', flexDirection: 'column', gap: 12 }}>
               <div>
-                <div style={{ fontSize: 9, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 6 }}>Best Pose — ALO-0042</div>
+                <div style={{ fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 6 }}>Best Pose — ALO-0042</div>
                 <PoseViewer />
               </div>
               <div>
-                <div style={{ fontSize: 9, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 6 }}>Docking Progress</div>
+                <div style={{ fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 6 }}>Docking Progress</div>
                 <DockingProgress />
               </div>
             </div>
             <div style={{ width: 220, borderLeft: '1px solid #ddd', background: '#eee8e8' }}>
-              <div style={{ padding: '10px 12px 6px', fontSize: 9, letterSpacing: 1, textTransform: 'uppercase', color: '#999' }}>Top Hits (Ensemble Rank)</div>
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 10, fontFamily: 'Inter, sans-serif' }}>
+              <div style={{ padding: '10px 12px 6px', fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', color: '#999' }}>Top Hits (Ensemble Rank)</div>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 11, fontFamily: 'Inter, sans-serif' }}>
                 <thead>
                   <tr style={{ background: '#e8dede' }}>
                     <th style={{ padding: '5px 10px', textAlign: 'left', color: '#888', fontWeight: 600 }}>ID</th>
@@ -122,10 +122,10 @@ export default function Dock() {
                   ))}
                 </tbody>
               </table>
-              <div style={{ padding: '8px 12px', fontSize: 9, color: '#aaa', fontFamily: 'Inter, sans-serif' }}>6 of 1,340,000 shown · re-scored</div>
+              <div style={{ padding: '8px 12px', fontSize: 11, color: '#aaa', fontFamily: 'Inter, sans-serif' }}>6 of 1,340,000 shown · re-scored</div>
             </div>
           </div>
-          <div style={{ background: '#d97272', padding: '4px 14px', display: 'flex', gap: 20, color: '#fff', fontSize: 9.5, fontFamily: 'Inter, sans-serif' }}>
+          <div style={{ background: '#d97272', padding: '4px 14px', display: 'flex', gap: 20, color: '#fff', fontSize: 11.5, fontFamily: 'Inter, sans-serif' }}>
             <span>AutoDock-GPU 1.5</span><span>Vina 1.2</span><span>GNN re-scorer</span><span style={{ marginLeft: 'auto' }}>1.34M poses · 38 min elapsed</span>
           </div>
         </div>

@@ -87,10 +87,10 @@ export default function Validate() {
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e' }} />
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
             <span style={{ marginLeft: 12, fontSize: 11, fontWeight: 600, color: '#555', fontFamily: 'Inter, sans-serif' }}>Validate — ALO-0042 · HSP90-N · SOP generation</span>
-            <div style={{ marginLeft: 'auto', padding: '2px 10px', background: '#28c840', borderRadius: 4, color: '#fff', fontSize: 10, fontFamily: 'Inter, sans-serif' }}>● COMPLETE</div>
+            <div style={{ marginLeft: 'auto', padding: '2px 10px', background: '#28c840', borderRadius: 4, color: '#fff', fontSize: 11, fontFamily: 'Inter, sans-serif' }}>● COMPLETE</div>
           </div>
           <div style={{ display: 'flex', height: 310 }}>
-            <div style={{ width: 260, background: '#0f1117', padding: 14, fontFamily: 'monospace', fontSize: 9.5, color: '#ccc', overflowY: 'auto', flexShrink: 0, borderRight: '1px solid #333' }}>
+            <div style={{ width: 260, background: '#0f1117', padding: 14, fontFamily: 'monospace', fontSize: 11.5, color: '#ccc', overflowY: 'auto', flexShrink: 0, borderRight: '1px solid #333' }}>
               {SOP_LINES.map((line, i) => (
                 <div key={i} style={{
                   color: line.startsWith('#') ? '#cc6262' : line.startsWith('·') ? '#e8a8a8' : line.startsWith('Expected') ? '#febc2e' : '#ccc',
@@ -102,14 +102,14 @@ export default function Validate() {
             </div>
             <div style={{ flex: 1, padding: 14, display: 'flex', flexDirection: 'column', gap: 12 }}>
               <div>
-                <div style={{ fontSize: 9, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 6 }}>Predicted HDX-MS Readout (ALO-0042 bound)</div>
+                <div style={{ fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 6 }}>Predicted HDX-MS Readout (ALO-0042 bound)</div>
                 <PredictedReadout />
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 9, color: '#bbb', marginTop: 2 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: '#bbb', marginTop: 2 }}>
                   <span>t = 0s</span><span>t = 3000s</span>
                 </div>
               </div>
               <div>
-                <div style={{ fontSize: 9, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 8 }}>Recommended Assays</div>
+                <div style={{ fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 8 }}>Recommended Assays</div>
                 {ASSAYS.map(a => (
                   <div key={a.name} style={{
                     display: 'flex', alignItems: 'center', gap: 8,
@@ -118,8 +118,8 @@ export default function Validate() {
                     border: a.recommended ? '1px solid rgba(204,98,98,0.2)' : '1px solid #ece4e4',
                   }}>
                     <div style={{ width: 6, height: 6, borderRadius: '50%', background: a.recommended ? '#cc6262' : '#ddd', flexShrink: 0 }} />
-                    <span style={{ fontWeight: a.recommended ? 600 : 400, color: '#333', fontFamily: 'Inter, sans-serif', fontSize: 10.5 }}>{a.name}</span>
-                    <span style={{ fontSize: 9, color: '#999', fontFamily: 'Inter, sans-serif' }}>{a.timeline}</span>
+                    <span style={{ fontWeight: a.recommended ? 600 : 400, color: '#333', fontFamily: 'Inter, sans-serif', fontSize: 11.5 }}>{a.name}</span>
+                    <span style={{ fontSize: 11, color: '#999', fontFamily: 'Inter, sans-serif' }}>{a.timeline}</span>
                     <div style={{ marginLeft: 'auto', width: 36, height: 3, background: '#e8e0e0', borderRadius: 2 }}>
                       <div style={{ height: '100%', width: `${a.confidence}%`, background: '#cc6262', borderRadius: 2 }} />
                     </div>
@@ -128,7 +128,7 @@ export default function Validate() {
               </div>
             </div>
           </div>
-          <div style={{ background: '#d97272', padding: '4px 14px', display: 'flex', gap: 20, color: '#fff', fontSize: 9.5, fontFamily: 'Inter, sans-serif' }}>
+          <div style={{ background: '#d97272', padding: '4px 14px', display: 'flex', gap: 20, color: '#fff', fontSize: 11.5, fontFamily: 'Inter, sans-serif' }}>
             <span>LLM reasoning</span><span>HDX-MS recommended</span><span>SOP ready</span><span style={{ marginLeft: 'auto' }}>Export to Benchling / PDF</span>
           </div>
         </div>

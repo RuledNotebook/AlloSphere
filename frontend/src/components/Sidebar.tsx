@@ -90,7 +90,7 @@ export default function Sidebar() {
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
                 <Lock size={12} color="rgba(255,255,255,0.5)" />
-                <span style={{ fontSize: 10, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)' }}>
+                <span style={{ fontSize: 11, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)' }}>
                   Sub-Tools
                 </span>
               </div>

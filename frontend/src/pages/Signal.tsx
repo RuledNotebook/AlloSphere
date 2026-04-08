@@ -56,7 +56,7 @@ function PathwayScoreBar() {
             background: v > 0.7 ? '#cc6262' : v > 0.4 ? '#d97272' : '#e8a8a8',
             height: `${(v / max) * 100}%`,
           }} />
-          <span style={{ fontSize: 7, color: '#aaa', fontFamily: 'monospace' }}>{NODES[i].id.slice(0,3)}</span>
+          <span style={{ fontSize: 11, color: '#aaa', fontFamily: 'monospace' }}>{NODES[i].id.slice(0,3)}</span>
         </div>
       ))}
     </div>
@@ -100,21 +100,21 @@ export default function Signal() {
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e' }} />
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
             <span style={{ marginLeft: 12, fontSize: 11, fontWeight: 600, color: '#555', fontFamily: 'Inter, sans-serif' }}>Signal — ALO-0042 · HSP90-N · Pocket P-001</span>
-            <div style={{ marginLeft: 'auto', padding: '2px 10px', background: '#28c840', borderRadius: 4, color: '#fff', fontSize: 10, fontFamily: 'Inter, sans-serif' }}>● COMPLETE · 7m 42s</div>
+            <div style={{ marginLeft: 'auto', padding: '2px 10px', background: '#28c840', borderRadius: 4, color: '#fff', fontSize: 11, fontFamily: 'Inter, sans-serif' }}>● COMPLETE · 7m 42s</div>
           </div>
           <div style={{ display: 'flex', height: 310 }}>
             <div style={{ flex: 1, padding: 14, display: 'flex', flexDirection: 'column', gap: 12 }}>
               <div>
-                <div style={{ fontSize: 9, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 6 }}>Allosteric Communication Network</div>
+                <div style={{ fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 6 }}>Allosteric Communication Network</div>
                 <SignalGraph />
               </div>
               <div>
-                <div style={{ fontSize: 9, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 6 }}>Per-Residue Pathway Score</div>
+                <div style={{ fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', color: '#aaa', marginBottom: 6 }}>Per-Residue Pathway Score</div>
                 <PathwayScoreBar />
               </div>
             </div>
             <div style={{ width: 200, borderLeft: '1px solid #ddd', padding: 14, background: '#eee8e8' }}>
-              <div style={{ fontSize: 9, letterSpacing: 1, textTransform: 'uppercase', color: '#999', marginBottom: 12 }}>Prediction Output</div>
+              <div style={{ fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', color: '#999', marginBottom: 12 }}>Prediction Output</div>
               {[
                 ['Pathway score',    '0.91'],
                 ['Predicted ΔΔG',   '−2.4 kcal/mol'],
@@ -123,17 +123,17 @@ export default function Signal() {
                 ['Key residues',    'A24, E401, V102'],
               ].map(([k, v]) => (
                 <div key={k} style={{ marginBottom: 10 }}>
-                  <div style={{ fontSize: 9, color: '#999', marginBottom: 2 }}>{k}</div>
+                  <div style={{ fontSize: 11, color: '#999', marginBottom: 2 }}>{k}</div>
                   <div style={{ fontSize: 12, fontWeight: 700, color: k === 'Effect class' ? '#cc6262' : '#333', fontFamily: 'Inter, sans-serif' }}>{v}</div>
                 </div>
               ))}
               <div style={{ marginTop: 12, padding: '8px 10px', background: 'rgba(204,98,98,0.08)', borderRadius: 8, border: '1px solid rgba(204,98,98,0.2)' }}>
-                <div style={{ fontSize: 10, fontWeight: 600, color: '#cc6262', fontFamily: 'Inter, sans-serif', marginBottom: 3 }}>Recommendation</div>
-                <div style={{ fontSize: 10, color: '#666', lineHeight: 1.5, fontFamily: 'Inter, sans-serif' }}>Strong allosteric signal detected. Proceed to Rank and experimental HDX-MS validation.</div>
+                <div style={{ fontSize: 11, fontWeight: 600, color: '#cc6262', fontFamily: 'Inter, sans-serif', marginBottom: 3 }}>Recommendation</div>
+                <div style={{ fontSize: 11, color: '#666', lineHeight: 1.5, fontFamily: 'Inter, sans-serif' }}>Strong allosteric signal detected. Proceed to Rank and experimental HDX-MS validation.</div>
               </div>
             </div>
           </div>
-          <div style={{ background: '#d97272', padding: '4px 14px', display: 'flex', gap: 20, color: '#fff', fontSize: 9.5, fontFamily: 'Inter, sans-serif' }}>
+          <div style={{ background: '#d97272', padding: '4px 14px', display: 'flex', gap: 20, color: '#fff', fontSize: 11.5, fontFamily: 'Inter, sans-serif' }}>
             <span>Graph Transformer v3</span><span>ATLAS 2024</span><span>CUDA 12.2</span><span style={{ marginLeft: 'auto' }}>Agonist · pathway score 0.91</span>
           </div>
         </div>

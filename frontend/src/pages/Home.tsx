@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Dna, ScanSearch, Layers, Radio, ListOrdered, FlaskConical, type LucideIcon } from 'lucide-react'
-import { LogoMark } from '../components/Logo'
+import { LogoMark, LogoWordmark } from '../components/Logo'
 
 interface ToolDef {
   id: string
@@ -117,23 +117,22 @@ function DotField() {
       const rect = canvas!.getBoundingClientRect()
       mouse.current = { x: e.clientX - rect.left, y: e.clientY - rect.top }
     }
-    const onMouseLeave = () => { mouse.current = { x: -9999, y: -9999 } }
 
-    canvas.addEventListener('mousemove', onMouseMove)
-    canvas.addEventListener('mouseleave', onMouseLeave)
+    const parent = canvas.parentElement!
+    parent.addEventListener('mousemove', onMouseMove)
+    parent.addEventListener('mouseleave', () => { mouse.current = { x: -9999, y: -9999 } })
 
     return () => {
       cancelAnimationFrame(rafRef.current)
       ro.disconnect()
-      canvas.removeEventListener('mousemove', onMouseMove)
-      canvas.removeEventListener('mouseleave', onMouseLeave)
+      parent.removeEventListener('mousemove', onMouseMove)
     }
   }, [])
 
   return (
     <canvas
       ref={canvasRef}
-      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block', pointerEvents: 'auto' }}
+      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block', pointerEvents: 'none', zIndex: 0 }}
     />
   )
 }
@@ -172,7 +171,7 @@ function InnerWindow({ tool }: { tool: ToolDef }) {
         </div>
         <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5 }}>
           <tool.Icon size={10} strokeWidth={2} color="#d97272" />
-          <span style={{ fontSize: 10, fontWeight: 500, color: '#ccc', fontFamily: 'Inter, sans-serif' }}>{tool.name}</span>
+          <span style={{ fontSize: 11, fontWeight: 500, color: '#ccc', fontFamily: 'Inter, sans-serif' }}>{tool.name}</span>
         </div>
         <div style={{ width: 32 }} />
       </div>
@@ -192,7 +191,7 @@ function InnerWindow({ tool }: { tool: ToolDef }) {
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
           <div style={{ flex: 3, height: 52, borderRadius: 6, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <span style={{ fontSize: 9, color: '#d97272', fontFamily: 'monospace' }}>● {tool.badge} running…</span>
+            <span style={{ fontSize: 11, color: '#d97272', fontFamily: 'monospace' }}>● {tool.badge} running…</span>
           </div>
           <div style={{ flex: 2, display: 'flex', flexDirection: 'column', gap: 5, justifyContent: 'center' }}>
             {[85, 60, 40].map((w, k) => (
@@ -223,6 +222,7 @@ export default function Home() {
         position: 'relative',
         overflow: 'hidden',
       }}>
+        <DotField />
         <div style={{ position: 'absolute', width: 600, height: 600, top: -260, right: -180, background: 'rgba(240,200,200,0.22)', borderRadius: '50%', filter: 'blur(60px)', pointerEvents: 'none' }} />
 
         <motion.div
@@ -230,8 +230,8 @@ export default function Home() {
           initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
         >
-          <LogoMark size={36} color="rgba(204,98,98,0.75)" />
-          <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--coral)', letterSpacing: '1.5px', textTransform: 'uppercase' }}>AlloSphere</span>
+          <LogoMark size={28} color="rgba(204,98,98,0.75)" />
+          <LogoWordmark dark />
         </motion.div>
 
         <motion.h1
@@ -289,7 +289,7 @@ export default function Home() {
                     <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7 }}>
                       <tool.Icon size={12} strokeWidth={2} color="var(--coral)" />
                       <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-dark)', letterSpacing: '-0.1px' }}>{tool.name}</span>
-                      <span style={{ fontSize: 10, fontWeight: 600, padding: '1px 8px', borderRadius: 20, background: 'var(--blush)', color: 'var(--deep-coral)', border: '1px solid var(--light-pink)' }}>{tool.badge}</span>
+                      <span style={{ fontSize: 11, fontWeight: 600, padding: '1px 8px', borderRadius: 20, background: 'var(--blush)', color: 'var(--deep-coral)', border: '1px solid var(--light-pink)' }}>{tool.badge}</span>
                     </div>
                   </div>
 
@@ -313,7 +313,7 @@ export default function Home() {
                     <div style={{ fontSize: 12.5, color: 'var(--text-muted)', lineHeight: 1.55, maxWidth: '75%' }}>{tool.tagline}</div>
                     <div style={{ textAlign: 'right', flexShrink: 0, marginLeft: 16 }}>
                       <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--deep-coral)', lineHeight: 1 }}>{tool.stat}</div>
-                      <div style={{ fontSize: 10, color: 'var(--text-muted)', marginTop: 2 }}>{tool.statLabel}</div>
+                      <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 2 }}>{tool.statLabel}</div>
                     </div>
                   </div>
                 </motion.div>

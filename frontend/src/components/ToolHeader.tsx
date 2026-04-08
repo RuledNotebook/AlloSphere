@@ -36,7 +36,7 @@ export default function ToolHeader({ eyebrow, title, subtitle, Icon, stats }: Pr
         <Icon size={20} strokeWidth={1.6} color="var(--coral)" />
       </div>
 
-      <div style={{ fontSize: 10, letterSpacing: '2.5px', textTransform: 'uppercase', color: 'var(--coral)', fontWeight: 600, marginBottom: 8 }}>
+      <div style={{ fontSize: 11, letterSpacing: '2.5px', textTransform: 'uppercase', color: 'var(--coral)', fontWeight: 600, marginBottom: 8 }}>
         {eyebrow}
       </div>
 
@@ -55,7 +55,7 @@ export default function ToolHeader({ eyebrow, title, subtitle, Icon, stats }: Pr
             borderRight: i < stats.length - 1 ? '1px solid var(--blush)' : 'none',
           }}>
             <div style={{ fontSize: 20, fontWeight: 700, color: 'var(--deep-coral)', marginBottom: 3 }}>{s.value}</div>
-            <div style={{ fontSize: 10.5, color: 'var(--text-muted)' }}>{s.label}</div>
+            <div style={{ fontSize: 11.5, color: 'var(--text-muted)' }}>{s.label}</div>
           </div>
         ))}
       </div>

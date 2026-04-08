@@ -83,7 +83,7 @@ export default function Rank() {
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e' }} />
             <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
             <span style={{ marginLeft: 12, fontSize: 11, fontWeight: 600, color: '#555', fontFamily: 'Inter, sans-serif' }}>Rank — 1.34M hits · Pareto frontier · LLM rationale</span>
-            <div style={{ marginLeft: 'auto', padding: '2px 10px', background: '#28c840', borderRadius: 4, color: '#fff', fontSize: 10, fontFamily: 'Inter, sans-serif' }}>● COMPLETE · 1m 48s</div>
+            <div style={{ marginLeft: 'auto', padding: '2px 10px', background: '#28c840', borderRadius: 4, color: '#fff', fontSize: 11, fontFamily: 'Inter, sans-serif' }}>● COMPLETE · 1m 48s</div>
           </div>
           <div style={{ display: 'flex', height: 310 }}>
             <div style={{ flex: 1, overflowY: 'auto' }}>
@@ -91,7 +91,7 @@ export default function Rank() {
                 <thead style={{ background: '#eee8e8', position: 'sticky', top: 0 }}>
                   <tr>
                     {['#', 'Compound', 'GNN ΔG', 'Signal', 'ADMET', 'SA', 'Score'].map(h => (
-                      <th key={h} style={{ padding: '8px 10px', textAlign: h === '#' ? 'center' : 'left', color: '#888', fontWeight: 600, fontSize: 10 }}>{h}</th>
+                      <th key={h} style={{ padding: '8px 10px', textAlign: h === '#' ? 'center' : 'left', color: '#888', fontWeight: 600, fontSize: 11 }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
@@ -110,7 +110,7 @@ export default function Rank() {
                         </div>
                       </td>
                       <td style={{ padding: '8px 10px' }}>
-                        <span style={{ fontSize: 10, fontWeight: 600, padding: '2px 7px', borderRadius: 4, background: h.admet === 'Pass' ? 'rgba(40,200,64,0.1)' : 'rgba(254,188,46,0.15)', color: h.admet === 'Pass' ? '#28c840' : '#d97000' }}>
+                        <span style={{ fontSize: 11, fontWeight: 600, padding: '2px 7px', borderRadius: 4, background: h.admet === 'Pass' ? 'rgba(40,200,64,0.1)' : 'rgba(254,188,46,0.15)', color: h.admet === 'Pass' ? '#28c840' : '#d97000' }}>
                           {h.admet}
                         </span>
                       </td>
@@ -122,14 +122,14 @@ export default function Rank() {
               </table>
             </div>
             <div style={{ width: 190, borderLeft: '1px solid #ddd', background: '#eee8e8', padding: 14 }}>
-              <div style={{ fontSize: 9, letterSpacing: 1, textTransform: 'uppercase', color: '#999', marginBottom: 8 }}>ALO-0042 · Score Profile</div>
+              <div style={{ fontSize: 11, letterSpacing: 1, textTransform: 'uppercase', color: '#999', marginBottom: 8 }}>ALO-0042 · Score Profile</div>
               <RadarChart />
-              <div style={{ marginTop: 8, padding: '8px 10px', background: '#fff', borderRadius: 8, border: '1px solid #e8e0e0', fontSize: 10, color: '#666', lineHeight: 1.5, fontFamily: 'Inter, sans-serif' }}>
+              <div style={{ marginTop: 8, padding: '8px 10px', background: '#fff', borderRadius: 8, border: '1px solid #e8e0e0', fontSize: 11, color: '#666', lineHeight: 1.5, fontFamily: 'Inter, sans-serif' }}>
                 <strong style={{ color: '#333' }}>LLM:</strong> Structurally analogous to geldanamycin (IC50 = 1.2 nM vs. HSP90). Predicted agonist modulation at N-terminal ATPase pocket. Recommend HDX-MS validation.
               </div>
             </div>
           </div>
-          <div style={{ background: '#d97272', padding: '4px 14px', display: 'flex', gap: 20, color: '#fff', fontSize: 9.5, fontFamily: 'Inter, sans-serif' }}>
+          <div style={{ background: '#d97272', padding: '4px 14px', display: 'flex', gap: 20, color: '#fff', fontSize: 11.5, fontFamily: 'Inter, sans-serif' }}>
             <span>Pareto frontier</span><span>5 objectives</span><span>LLM rationale</span><span style={{ marginLeft: 'auto' }}>Top 5 of 1.34M · export ready</span>
           </div>
         </div>
